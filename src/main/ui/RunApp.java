@@ -1,7 +1,7 @@
 package ui;
 
-public class Main {
+public class RunApp {
     public static void main(String[] args) {
-
+        new MainMenu();
     }
 }
