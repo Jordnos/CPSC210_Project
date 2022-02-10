@@ -5,12 +5,15 @@ public class GameMenu extends Menu {
     public static final String COMMAND_GAME_TWO = "2";
 
     protected void processCommand(String command) {
-        if (command.equals(COMMAND_GAME_ONE)) {
-            runGameOne();
-        } else if (command.equals(COMMAND_GAME_TWO)) {
-            runGameTwo();
-        } else {
-            System.out.println("Selection not valid...");
+        switch (command) {
+            case COMMAND_GAME_ONE:
+                runGameOne();
+                break;
+            case COMMAND_GAME_TWO:
+                runGameTwo();
+                break;
+            default:
+                System.out.println("Selection not valid...");
         }
     }
 
@@ -18,7 +21,7 @@ public class GameMenu extends Menu {
         System.out.println("\nSelect from:");
         System.out.println("\t1 -> game one");
         System.out.println("\t2 -> game two");
-        System.out.println("\tQ -> quit");
+        System.out.println("\tQ -> back");
     }
 
     private void runGameOne() {

@@ -11,15 +11,19 @@ public abstract class Menu {
     protected String accLoggedIn;
 
     public Menu() {
+        runMenu();
+    }
+
+    private void initialize() {
         loggedIn = false;
         accLoggedIn = null;
-        runMenu();
+        input = new Scanner(System.in);
     }
 
     private void runMenu() {
         boolean keepGoing = true;
         String command;
-
+        initialize();
         while (keepGoing) {
             displayMenu();
             command = input.next();
@@ -31,7 +35,6 @@ public abstract class Menu {
                 processCommand(command);
             }
         }
-        System.out.println("\nGoodbye!");
     }
 
     protected abstract void processCommand(String command);

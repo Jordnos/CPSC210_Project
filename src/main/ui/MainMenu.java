@@ -8,12 +8,15 @@ public class MainMenu extends Menu {
     public static final String COMMAND_ACCOUNT = "A";
 
     protected void processCommand(String command) {
-        if (command.equals(COMMAND_GAME)) {
-            gameMenu();
-        } else if (command.equals(COMMAND_ACCOUNT)) {
-            accountMenu();
-        } else {
-            System.out.println("Selection not valid...");
+        switch (command) {
+            case COMMAND_GAME:
+                gameMenu();
+                break;
+            case COMMAND_ACCOUNT:
+                accountMenu();
+                break;
+            default:
+                System.out.println("Selection not valid...");
         }
     }
 
