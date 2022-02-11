@@ -1,12 +1,17 @@
 package ui;
 
-import model.UserAccount;
+import java.io.IOException;
 
 public class AccountMenu extends Menu {
     public static final String COMMAND_LOGIN = "I";
     public static final String COMMAND_LOGOUT = "O";
     public static final String COMMAND_SIGNUP = "S";
 
+    public AccountMenu() throws IOException, InterruptedException {
+        super();
+    }
+
+    // EFFECTS:  runs the command and calls the correlating method
     protected void processCommand(String command) {
         switch (command) {
             case COMMAND_LOGIN:
@@ -23,6 +28,7 @@ public class AccountMenu extends Menu {
         }
     }
 
+    // EFFECTS:  displays the menu
     protected void displayMenu() {
         System.out.println("\nSelect from:");
         System.out.println("\tI -> login");
@@ -31,6 +37,9 @@ public class AccountMenu extends Menu {
         System.out.println("\tQ -> back");
     }
 
+    // REQUIRES: username and password are not empty
+    // EFFECTS:  prompts user for login info, either logging is successful or fails, or user is
+    //           already logged in; prints appropriate message
     private void loginPrompt() {
         if (loggedIn) {
             System.out.println("already logged in ");
@@ -42,7 +51,7 @@ public class AccountMenu extends Menu {
             System.out.println("Password: ");
             passIn = input.next();
 
-            if (UserAccount.loginAccount(userIn, passIn)) {
+            if (list.loginAccount(userIn, passIn)) {
                 loggedIn = true;
                 accLoggedIn = userIn;
                 System.out.println("login successful ");
@@ -52,6 +61,7 @@ public class AccountMenu extends Menu {
         }
     }
 
+    // EFFECTS:  logs user off or user isn't even logged in; prints appropriate message
     private void logoutPrompt() {
         if (!loggedIn) {
             System.out.println("you are not logged in ");
@@ -62,6 +72,9 @@ public class AccountMenu extends Menu {
         }
     }
 
+    // REQUIRES: username and password are not empty
+    // EFFECTS:  prompts user for signup info, either signup is successful or fails because
+    //           of unique usernames, or user is already logged in; prints appropriate message
     private void signupPrompt() {
         if (loggedIn) {
             System.out.println("already logged in ");
@@ -73,7 +86,7 @@ public class AccountMenu extends Menu {
             System.out.println("Password: ");
             passIn = input.next();
 
-            if (UserAccount.addAccount(userIn, passIn)) {
+            if (list.addAccount(userIn, passIn)) {
                 loggedIn = true;
                 accLoggedIn = userIn;
                 System.out.println("sign up successful, you are now logged in ");

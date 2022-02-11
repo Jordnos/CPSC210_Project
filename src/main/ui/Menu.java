@@ -1,26 +1,30 @@
 package ui;
 
+import model.AccountList;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public abstract class Menu {
-
     public static final String COMMAND_QUIT = "Q";
 
     protected Scanner input;
-    protected boolean loggedIn;
-    protected String accLoggedIn;
+    protected static boolean loggedIn;
+    protected static String accLoggedIn;
+    protected static AccountList list;
 
-    public Menu() {
+    // EFFECTS:  starts the runMenu
+    public Menu() throws IOException, InterruptedException {
         runMenu();
     }
 
-    private void initialize() {
-        loggedIn = false;
-        accLoggedIn = null;
+    // EFFECTS:  initializes variables
+    protected void initialize() {
         input = new Scanner(System.in);
     }
 
-    private void runMenu() {
+    // EFFECTS:  runs the menu and keeps it up until the quit command is done
+    private void runMenu() throws IOException, InterruptedException {
         boolean keepGoing = true;
         String command;
         initialize();
@@ -37,8 +41,10 @@ public abstract class Menu {
         }
     }
 
-    protected abstract void processCommand(String command);
+    // EFFECTS:  runs the command and calls the correlating method
+    protected abstract void processCommand(String command) throws IOException, InterruptedException;
 
+    // EFFECTS:  displays the menu
     protected abstract void displayMenu();
 
 }
