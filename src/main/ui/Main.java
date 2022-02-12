@@ -1,5 +1,7 @@
 package ui;
 
+import ui.menus.MainMenu;
+
 import java.io.IOException;
 
 public class Main {

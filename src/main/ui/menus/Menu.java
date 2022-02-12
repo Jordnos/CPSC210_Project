@@ -1,10 +1,11 @@
-package ui;
+package ui.menus;
 
 import model.AccountList;
 
 import java.io.IOException;
 import java.util.Scanner;
 
+// tellerApp code is used as reference
 public abstract class Menu {
     public static final String COMMAND_QUIT = "Q";
 

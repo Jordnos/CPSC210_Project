@@ -1,9 +1,8 @@
-package ui;
+package ui.menus;
 
 import model.AccountList;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 public class MainMenu extends Menu {
 

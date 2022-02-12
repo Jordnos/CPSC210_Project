@@ -1,4 +1,6 @@
-package ui;
+package ui.menus;
+
+import ui.menus.Menu;
 
 import java.io.IOException;
 
