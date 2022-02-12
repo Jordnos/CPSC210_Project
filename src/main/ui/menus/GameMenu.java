@@ -1,12 +1,12 @@
 package ui.menus;
 
 import ui.GameTerminal;
-import ui.menus.Menu;
-
 import java.io.IOException;
 
 public class GameMenu extends Menu {
     public static final String COMMAND_GAME_MEMORIZE_SEQUENCE = "1";
+    private int newScore;
+
 
     public GameMenu() throws IOException, InterruptedException {
         super();
@@ -23,7 +23,8 @@ public class GameMenu extends Menu {
 
     // EFFECTS:  displays the menu
     protected void displayMenu() {
-        System.out.println("\nSelect from:");
+        super.displayMenu();
+        System.out.println("Select Game from:");
         System.out.println("\t1 -> Memorize Sequence");
         System.out.println("\tQ -> back");
     }
@@ -31,6 +32,9 @@ public class GameMenu extends Menu {
     // EFFECTS:  runs GameMemorizeSequence
     private void runGameMemorizeSequence() throws IOException, InterruptedException {
         GameTerminal gameHandler = new GameTerminal();
-        gameHandler.start();
+        newScore = gameHandler.start();
+        if (loggedIn && newScore > 0) {
+            leaderboardMemorizeSequence.addToLeaderboard(newScore, accLoggedIn);
+        }
     }
 }

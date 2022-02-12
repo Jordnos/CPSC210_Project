@@ -1,7 +1,5 @@
 package model;
 
-import com.googlecode.lanterna.input.KeyType;
-
 import java.util.ArrayList;
 import java.util.Random;
 

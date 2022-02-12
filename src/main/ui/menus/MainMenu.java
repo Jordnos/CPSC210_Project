@@ -1,12 +1,13 @@
 package ui.menus;
 
 import model.AccountList;
+import model.Leaderboard;
 
 import java.io.IOException;
 
 public class MainMenu extends Menu {
-
     public static final String COMMAND_GAME = "G";
+    public static final String COMMAND_LEADERBOARD = "L";
     public static final String COMMAND_ACCOUNT = "A";
 
     public MainMenu() throws IOException, InterruptedException {
@@ -20,6 +21,7 @@ public class MainMenu extends Menu {
         loggedIn = false;
         accLoggedIn = null;
         list = new AccountList();
+        leaderboardMemorizeSequence = new Leaderboard(Leaderboard.LEADERBOARD_GAME_MEMORIZE_SEQUENCE);
     }
 
     // EFFECTS:  runs the command and calls the correlating method
@@ -27,6 +29,9 @@ public class MainMenu extends Menu {
         switch (command) {
             case COMMAND_GAME:
                 gameMenu();
+                break;
+            case COMMAND_LEADERBOARD:
+                leaderboardMenu();
                 break;
             case COMMAND_ACCOUNT:
                 accountMenu();
@@ -38,8 +43,10 @@ public class MainMenu extends Menu {
 
     // EFFECTS:  displays the menu
     protected void displayMenu() {
-        System.out.println("\nSelect from:");
+        super.displayMenu();
+        System.out.println("Select from:");
         System.out.println("\tG -> game selection");
+        System.out.println("\tL -> leaderboards");
         System.out.println("\tA -> account manager");
         System.out.println("\tQ -> quit");
     }
@@ -47,6 +54,11 @@ public class MainMenu extends Menu {
     // EFFECTS:  runs the game menu
     private void gameMenu() throws IOException, InterruptedException {
         new GameMenu();
+    }
+
+    // EFFECTS:  runs the leaderboard menu
+    private void leaderboardMenu() throws IOException, InterruptedException {
+        new LeaderboardMenu();
     }
 
     // EFFECTS:  runs the account menu

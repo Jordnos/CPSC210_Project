@@ -32,7 +32,8 @@ public class AccountMenu extends Menu {
 
     // EFFECTS:  displays the menu
     protected void displayMenu() {
-        System.out.println("\nSelect from:");
+        super.displayMenu();
+        System.out.println("Select from:");
         System.out.println("\tI -> login");
         System.out.println("\tO -> logout");
         System.out.println("\tS -> signup");

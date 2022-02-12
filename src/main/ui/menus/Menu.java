@@ -1,6 +1,7 @@
 package ui.menus;
 
 import model.AccountList;
+import model.Leaderboard;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -10,6 +11,7 @@ public abstract class Menu {
     public static final String COMMAND_QUIT = "Q";
 
     protected Scanner input;
+    protected static Leaderboard leaderboardMemorizeSequence;
     protected static boolean loggedIn;
     protected static String accLoggedIn;
     protected static AccountList list;
@@ -46,6 +48,12 @@ public abstract class Menu {
     protected abstract void processCommand(String command) throws IOException, InterruptedException;
 
     // EFFECTS:  displays the menu
-    protected abstract void displayMenu();
+    protected void displayMenu() {
+        if (loggedIn) {
+            System.out.println("\nLogged in: " + accLoggedIn);
+        } else {
+            System.out.println("\nNot logged in ");
+        }
+    }
 
 }

@@ -1,17 +1,13 @@
 package ui;
 
-import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.gui2.MultiWindowTextGUI;
 import com.googlecode.lanterna.gui2.WindowBasedTextGUI;
 import com.googlecode.lanterna.gui2.dialogs.MessageDialogBuilder;
 import com.googlecode.lanterna.gui2.dialogs.MessageDialogButton;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
 import model.GameMemorizeSequence;
 
 import java.io.IOException;
@@ -25,8 +21,8 @@ public class GameTerminal {
     private WindowBasedTextGUI endGui;
     private Scanner input;
 
-    //  starts the game
-    public void start() throws IOException, InterruptedException {
+    //  starts the game, returns the score of the game after
+    public int start() throws IOException, InterruptedException {
         screen = new DefaultTerminalFactory().createScreen();
         screen.startScreen();
         input = new Scanner(System.in);
@@ -34,6 +30,7 @@ public class GameTerminal {
         game = new GameMemorizeSequence();
 
         startGame();
+        return game.getScore();
     }
 
     // begins game cycle, and keeps starting rounds until game is ended and endGui is exited
@@ -70,8 +67,9 @@ public class GameTerminal {
         if (!playerInput()) {
             game.setEnded(true);
             drawEndScreen();
+        } else {
+            game.increaseScore();
         }
-        game.increaseScore();
     }
 
     // draws the sequence in a blinking effect
