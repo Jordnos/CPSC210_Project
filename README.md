@@ -15,7 +15,7 @@ website is an inspiration for this project as I will attempt to replicate some o
 
 ## Phase 1 User Stories
 
-- As a user, I want to be able to create an account.
+- As a user, I want to be able to create an account and add it to the account list.
 - As a user, I want to be able to log in and out of my account.
 - As a user, I want to be able to change menus (main, games, leaderboards, etc).
 - As a user, I want to be able to select a game to play, and play it.

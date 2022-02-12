@@ -4,6 +4,7 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+// this class has methods needed to create a leaderboard for any game
 public class Leaderboard {
     public static final String LEADERBOARD_GAME_MEMORIZE_SEQUENCE = "MEMORIZE SEQUENCE";
 
@@ -34,4 +35,9 @@ public class Leaderboard {
             scoresList.put(score,arr);
         }
     }
+
+    public String getGameTitle() {
+        return gameTitle;
+    }
+
 }

@@ -34,7 +34,7 @@ public class LeaderboardMenu extends Menu {
     // EFFECTS:  displays leaderboard for Memorize Sequence game
     private void showLeaderBoardMemorizeSequence(String game) {
         HashMap<Integer,ArrayList<String>> list = leaderboardMemorizeSequence.getScoresList();
-        System.out.println("SCORES\tUSER");
+        System.out.println(leaderboardMemorizeSequence.getGameTitle() + "\nSCORES\tUSER FOR GAME");
 
         for (int i = HIGHEST_SCORE; i > 0; i--) {
             if (list.containsKey(i)) {

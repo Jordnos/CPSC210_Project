@@ -15,13 +15,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 // SnakeConsole code is used as reference
-public class GameTerminal {
+// runs the Memorize Sequence game
+public class GameTerminalMemorizeSequence {
     private GameMemorizeSequence game;
     private Screen screen;
     private WindowBasedTextGUI endGui;
     private Scanner input;
 
-    //  starts the game, returns the score of the game after
+    // MODIFIES: this
+    // EFFECTS:  starts the game, returns the score of the game after
     public int start() throws IOException, InterruptedException {
         screen = new DefaultTerminalFactory().createScreen();
         screen.startScreen();
@@ -33,7 +35,8 @@ public class GameTerminal {
         return game.getScore();
     }
 
-    // begins game cycle, and keeps starting rounds until game is ended and endGui is exited
+    // MODIFIES: this
+    // EFFECTS:  begins game cycle, and keeps starting rounds until game is ended and endGui is exited
     private void startGame() throws IOException, InterruptedException {
         while (!game.isEnded() || endGui.getActiveWindow() != null) {
             screen.clear();
@@ -47,8 +50,9 @@ public class GameTerminal {
         screen.close();
     }
 
-    // renders the screen, draws the end screen if game is ended, otherwise
-    // draws the score
+    // MODIFIES: this
+    // EFFECTS:  renders the screen, draws the end screen if game is ended, otherwise
+    //           draws the score
     private void render() {
         if (game.isEnded()) {
             if (endGui == null) {
@@ -59,8 +63,9 @@ public class GameTerminal {
         drawScore();
     }
 
-    // starts a round of the game
-    // if the player input was wrong, ends the game and draws the endscreen
+    // MODIFIES: this
+    // EFFECTS:  starts a round of the game
+    //           if the player input was wrong, ends the game and draws the endscreen
     private void startRound() throws InterruptedException, IOException {
         game.addOneToSequence();
         drawSequence();
@@ -72,7 +77,8 @@ public class GameTerminal {
         }
     }
 
-    // draws the sequence in a blinking effect
+    // MODIFIES: this
+    // EFFECTS:  draws the sequence in a blinking effect
     private void drawSequence() throws InterruptedException, IOException {
         TextGraphics text = screen.newTextGraphics();
         text.setForegroundColor(TextColor.ANSI.WHITE);
@@ -90,8 +96,9 @@ public class GameTerminal {
         }
     }
 
-    // prompts the user to input the sequence
-    // if the final input is right returns true, otherwise returns false
+    // MODIFIES: this
+    // EFFECTS:  prompts the user to input the sequence
+    //           if the final input is right returns true, otherwise returns false
     private boolean playerInput() {
         ArrayList<Character> arr = new ArrayList<>();
         System.out.println("Use w a s d for directions. ");
@@ -109,7 +116,8 @@ public class GameTerminal {
         return true;
     }
 
-    // draws the end screen
+    // MODIFIES: this
+    // EFFECTS:  draws the end screen
     private void drawEndScreen() {
         endGui = new MultiWindowTextGUI(screen);
 
@@ -121,7 +129,8 @@ public class GameTerminal {
                 .showDialog(endGui);
     }
 
-    // draws the score
+    // MODIFIES: this
+    // EFFECTS:  draws the score
     private void drawScore() {
         TextGraphics text = screen.newTextGraphics();
         text.setForegroundColor(TextColor.ANSI.GREEN);

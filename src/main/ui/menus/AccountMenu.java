@@ -1,18 +1,19 @@
 package ui.menus;
 
-import ui.menus.Menu;
-
 import java.io.IOException;
 
+// a menu for things to do with accounts
 public class AccountMenu extends Menu {
     public static final String COMMAND_LOGIN = "I";
     public static final String COMMAND_LOGOUT = "O";
     public static final String COMMAND_SIGNUP = "S";
 
+    // EFFECTS:  starts the runMenu
     public AccountMenu() throws IOException, InterruptedException {
         super();
     }
 
+    // MODIFIES: this
     // EFFECTS:  runs the command and calls the correlating method
     protected void processCommand(String command) {
         switch (command) {
@@ -41,6 +42,7 @@ public class AccountMenu extends Menu {
     }
 
     // REQUIRES: username and password are not empty
+    // MODIFIES: this
     // EFFECTS:  prompts user for login info, either logging is successful or fails, or user is
     //           already logged in; prints appropriate message
     private void loginPrompt() {
@@ -64,6 +66,7 @@ public class AccountMenu extends Menu {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS:  logs user off or user isn't even logged in; prints appropriate message
     private void logoutPrompt() {
         if (!loggedIn) {
@@ -76,6 +79,7 @@ public class AccountMenu extends Menu {
     }
 
     // REQUIRES: username and password are not empty
+    // MODIFIES: this
     // EFFECTS:  prompts user for signup info, either signup is successful or fails because
     //           of unique usernames, or user is already logged in; prints appropriate message
     private void signupPrompt() {

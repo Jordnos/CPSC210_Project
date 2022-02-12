@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 // tellerApp code is used as reference
+// abstract class with things to do with menus
 public abstract class Menu {
     public static final String COMMAND_QUIT = "Q";
 
@@ -16,16 +17,19 @@ public abstract class Menu {
     protected static String accLoggedIn;
     protected static AccountList list;
 
+    // MODIFIES: this
     // EFFECTS:  starts the runMenu
     public Menu() throws IOException, InterruptedException {
         runMenu();
     }
 
+    // MODIFIES: this
     // EFFECTS:  initializes variables
     protected void initialize() {
         input = new Scanner(System.in);
     }
 
+    // MODIFIES: this
     // EFFECTS:  runs the menu and keeps it up until the quit command is done
     private void runMenu() throws IOException, InterruptedException {
         boolean keepGoing = true;

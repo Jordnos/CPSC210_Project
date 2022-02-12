@@ -2,9 +2,12 @@ package model;
 
 import java.util.HashMap;
 
+// this class creates a hashmap of accounts with username key pointing to the password
+// has methods to access an account
 public class AccountList {
     private HashMap<String, UserAccountPassword> list;
 
+    // EFFECTS:  initializes an empty list of accounts
     public AccountList() {
         list = new HashMap<>();
     }

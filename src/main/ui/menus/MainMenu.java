@@ -5,15 +5,18 @@ import model.Leaderboard;
 
 import java.io.IOException;
 
+// a menu so you can select other menus
 public class MainMenu extends Menu {
     public static final String COMMAND_GAME = "G";
     public static final String COMMAND_LEADERBOARD = "L";
     public static final String COMMAND_ACCOUNT = "A";
 
+    // EFFECTS:  starts the runMenu
     public MainMenu() throws IOException, InterruptedException {
         super();
     }
 
+    // MODIFIES: this
     // EFFECTS:  initializes variables
     @Override
     protected void initialize() {

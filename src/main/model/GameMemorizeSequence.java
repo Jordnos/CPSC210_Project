@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
+// class holds all the information and methods needed to run the game Memorize Sequence
 public class GameMemorizeSequence {
     public static final int TIME_PER_CHAR_IN_SEQUENCE = 1000;
     public static final int TIME_BETWEEN_SEQUENCE = 1000;
@@ -15,7 +16,7 @@ public class GameMemorizeSequence {
     private int score = 0;
     private boolean ended = false;
 
-    // EFFECTS:  initializes sequence, maxX and maxY
+    // EFFECTS:  initializes the sequence as an array
     public GameMemorizeSequence() {
         sequence = new ArrayList<>();
     }
@@ -58,7 +59,7 @@ public class GameMemorizeSequence {
     }
 
     // MODIFIES: this
-    // EFFECTS:  increases score by one
+    // EFFECTS:  increments score by one
     public void increaseScore() {
         score++;
     }
