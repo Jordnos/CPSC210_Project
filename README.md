@@ -21,3 +21,7 @@ website is an inspiration for this project as I will attempt to replicate some o
 - As a user, I want to be able to select a game to play, and play it.
 - As a user, I want to be able to record my score onto the leaderboard.  
 
+## Phase 2 User Stories
+
+- As a user, I want to be able to save the account list and leaderboard to a file.
+- As a user, I want to be able to load an account list and leaderboard from a file.
