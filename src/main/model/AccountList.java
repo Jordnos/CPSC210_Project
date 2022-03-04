@@ -1,11 +1,17 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 // this class creates a hashmap of accounts with username key pointing to the password
 // has methods to access an account
-public class AccountList {
-    private HashMap<String, UserAccountPassword> list;
+public class AccountList implements Writable {
+    private Map<String, UserAccount> list;
 
     // EFFECTS:  initializes an empty list of accounts
     public AccountList() {
@@ -16,7 +22,7 @@ public class AccountList {
     // EFFECTS:  creates an account and adds it to the accountlist if account with username doesn't already exist
     //           otherwise return false
     public boolean addAccount(String username, String password) {
-        UserAccountPassword acc = new UserAccountPassword(password);
+        UserAccount acc = new UserAccount(username, password);
         if (usernameTaken(username)) {
             return false;
         }
@@ -44,6 +50,28 @@ public class AccountList {
             return true;
         }
         return false;
+    }
+
+    public Map<String, UserAccount> getList() {
+        return Collections.unmodifiableMap(list);
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("accountList", accountListToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this account list as a JSON array
+    private JSONArray accountListToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (HashMap.Entry<String,UserAccount> acc : list.entrySet()) {
+            jsonArray.put(acc.getValue().toJson());
+        }
+
+        return jsonArray;
     }
 }
 
