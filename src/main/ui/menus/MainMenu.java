@@ -2,7 +2,6 @@ package ui.menus;
 
 import model.AccountList;
 import model.Leaderboard;
-import persistence.JsonReader;
 import persistence.JsonReaderAccounts;
 import persistence.JsonReaderLeaderboards;
 import persistence.JsonWriter;
