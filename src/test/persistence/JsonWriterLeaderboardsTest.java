@@ -1,8 +1,6 @@
 package persistence;
 
 import model.Leaderboard;
-import model.UserAccount;
-import model.AccountList;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -11,7 +9,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 // referenced from JsonSerializationDemo
-// unit test for JsonWriterLeaderboard
+// unit test for JsonWriter for Leaderboards
 public class JsonWriterLeaderboardsTest {
 
     @Test

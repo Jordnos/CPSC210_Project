@@ -10,8 +10,8 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 // referenced from JsonSerializationDemo
-// unit test for JsonWriter
-public class JsonWriterTest {
+// unit test for JsonWriter for Accounts
+public class JsonWriterAccountTest {
 
     @Test
     void testWriterInvalidFile() {
@@ -36,7 +36,7 @@ public class JsonWriterTest {
             writer.write(list);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyAccountList.json");
+            JsonReaderAccounts reader = new JsonReaderAccounts("./data/testWriterEmptyAccountList.json");
             list = reader.read();
             Map<String,UserAccount> testList = list.getList();
             assertTrue(testList.isEmpty());
@@ -58,7 +58,7 @@ public class JsonWriterTest {
             writer.write(list);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterGeneralAccountList.json");
+            JsonReaderAccounts reader = new JsonReaderAccounts("./data/testWriterGeneralAccountList.json");
             list = reader.read();
             Map<String, UserAccount> testList = list.getList();
             int i = 1;

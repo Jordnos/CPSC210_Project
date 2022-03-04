@@ -1,0 +1,10 @@
+{"accountList": [
+    {
+        "password": "pass1",
+        "username": "user1"
+    },
+    {
+        "password": "pass2",
+        "username": "user2"
+    }
+]}

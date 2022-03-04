@@ -1,23 +1,16 @@
 package persistence;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.stream.Stream;
-
-import model.AccountList;
 import model.Leaderboard;
 import org.json.*;
 
 // referenced from JsonSerializationDemo
 // Represents a reader that reads workroom from JSON data stored in file
-public class JsonReaderLeaderboards {
-    private String source;
+public class JsonReaderLeaderboards extends JsonReader {
 
     // EFFECTS: constructs reader to read from source file
     public JsonReaderLeaderboards(String source) {
-        this.source = source;
+        super(source);
     }
 
     // EFFECTS: reads leaderboardList from file and returns it;
@@ -26,16 +19,6 @@ public class JsonReaderLeaderboards {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseLeaderboards(jsonObject);
-    }
-
-    // EFFECTS: reads source file as string and returns it
-    private String readFile(String source) throws IOException {
-        StringBuilder contentBuilder = new StringBuilder();
-
-        try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
-            stream.forEach(contentBuilder::append);
-        }
-        return contentBuilder.toString();
     }
 
     // EFFECTS: parses Leaderboards from JSON object and returns it
