@@ -18,36 +18,51 @@ public class LeaderboardTest {
 
     @Test
     void testAddToLeaderboardZero() {
-        assertFalse(list.getScoresList().containsKey(0));
+        assertFalse(list.getScoresList().containsKey(user1));
         list.addToLeaderboard(0, user1);
-        assertTrue(list.getScoresList().containsKey(0));
-        assertEquals(user1, list.getScoresList().get(0).get(0));
+        assertTrue(list.getScoresList().containsKey(user1));
+        assertEquals(0, list.getScoresList().get(user1));
     }
 
     @Test
     void testAddToLeaderboardNegative() {
-        assertFalse(list.getScoresList().containsKey(-1));
+        assertFalse(list.getScoresList().containsKey(user1));
         list.addToLeaderboard(-1, user1);
-        assertTrue(list.getScoresList().containsKey(-1));
-        assertEquals(user1, list.getScoresList().get(-1).get(0));
+        assertTrue(list.getScoresList().containsKey(user1));
+        assertEquals(-1, list.getScoresList().get(user1));
     }
 
     @Test
     void testAddToLeaderboardRepeats() {
         String user2 = "user2";
-        assertFalse(list.getScoresList().containsKey(5));
         list.addToLeaderboard(5, user1);
-        assertTrue(list.getScoresList().containsKey(5));
-
-        assertEquals(user1, list.getScoresList().get(5).get(0));
-        assertEquals(1,list.getScoresList().get(5).size());
-
+        assertEquals(5, list.getScoresList().get(user1));
+        list.addToLeaderboard(5, user1);
+        assertEquals(5, list.getScoresList().get(user1));
         list.addToLeaderboard(5, user2);
-        assertEquals(user2, list.getScoresList().get(5).get(1));
-        assertEquals(2,list.getScoresList().get(5).size());
-
+        assertEquals(5, list.getScoresList().get(user2));
         list.addToLeaderboard(5, user2);
-        assertTrue(list.getScoresList().containsKey(5));
-        assertEquals(2,list.getScoresList().get(5).size());
+        assertEquals(5, list.getScoresList().get(user2));
+        list.addToLeaderboard(5, user2);
+        assertEquals(5, list.getScoresList().get(user2));
+    }
+
+    @Test
+    void testIncreasingScoresAddToLeaderboard() {
+        list.addToLeaderboard(1, user1);
+        assertEquals(1, list.getScoresList().get(user1));
+        list.addToLeaderboard(2, user1);
+        assertEquals(2, list.getScoresList().get(user1));
+        list.addToLeaderboard(5, user1);
+        assertEquals(5, list.getScoresList().get(user1));
+        list.addToLeaderboard(3, user1);
+        assertEquals(5, list.getScoresList().get(user1));
+        list.addToLeaderboard(5, user1);
+        assertEquals(5, list.getScoresList().get(user1));
+    }
+
+    @Test
+    void testGetGameTitle() {
+        assertEquals(Leaderboard.LEADERBOARD_GAME_MEMORIZE_SEQUENCE, list.getGameTitle());
     }
 }

@@ -3,8 +3,7 @@ package ui.menus;
 import model.Leaderboard;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 public class LeaderboardMenu extends Menu {
     public static final String COMMAND_GAME_MEMORIZE_SEQUENCE = "1";
@@ -33,15 +32,11 @@ public class LeaderboardMenu extends Menu {
 
     // EFFECTS:  displays leaderboard for Memorize Sequence game
     private void showLeaderBoardMemorizeSequence(String game) {
-        HashMap<Integer,ArrayList<String>> list = leaderboardMemorizeSequence.getScoresList();
+        Map<String, Integer> list = leaderboardMemorizeSequence.getScoresList();
         System.out.println(leaderboardMemorizeSequence.getGameTitle() + "\nSCORES\tUSER FOR GAME");
 
-        for (int i = HIGHEST_SCORE; i > 0; i--) {
-            if (list.containsKey(i)) {
-                for (String user: list.get(i)) {
-                    System.out.println(i + "\t\t" + user);
-                }
-            }
+        for (Map.Entry<String, Integer> entry : list.entrySet()) {
+            System.out.println(entry.getValue() + "\t\t" + entry.getKey());
         }
     }
 

@@ -1,0 +1,17 @@
+{
+    "scores": [
+        {
+            "score": 1,
+            "username": "user1"
+        },
+        {
+            "score": 2,
+            "username": "user2"
+        },
+        {
+            "score": 3,
+            "username": "user3"
+        }
+    ],
+    "title": "MEMORIZE SEQUENCE"
+}

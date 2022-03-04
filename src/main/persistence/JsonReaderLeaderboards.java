@@ -12,20 +12,20 @@ import org.json.*;
 
 // referenced from JsonSerializationDemo
 // Represents a reader that reads workroom from JSON data stored in file
-public class JsonReader {
+public class JsonReaderLeaderboards {
     private String source;
 
     // EFFECTS: constructs reader to read from source file
-    public JsonReader(String source) {
+    public JsonReaderLeaderboards(String source) {
         this.source = source;
     }
 
-    // EFFECTS: reads accountLiset from file and returns it;
+    // EFFECTS: reads leaderboardList from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public AccountList read() throws IOException {
+    public Leaderboard read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
-        return parseAccountList(jsonObject);
+        return parseLeaderboards(jsonObject);
     }
 
     // EFFECTS: reads source file as string and returns it
@@ -35,33 +35,31 @@ public class JsonReader {
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
             stream.forEach(contentBuilder::append);
         }
-
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses accountList from JSON object and returns it
-    private AccountList parseAccountList(JSONObject jsonObject) {
-        AccountList list = new AccountList();
-        addAccounts(list, jsonObject);
-        return list;
+    // EFFECTS: parses Leaderboards from JSON object and returns it
+    private Leaderboard parseLeaderboards(JSONObject jsonObject) {
+        Leaderboard board = new Leaderboard("gameTitle");
+        addLeaderboards(board, jsonObject);
+        return board;
     }
 
     // MODIFIES: list
-    // EFFECTS: parses UserAccounts from JSON object and adds them to workroom
-    private void addAccounts(AccountList list, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("accountList");
+    // EFFECTS: parses Leaderboards from JSON object and adds the list of leaderboards
+    private void addLeaderboards(Leaderboard board, JSONObject jsonObject) {
+        JSONArray jsonArray = jsonObject.getJSONArray("scores");
         for (Object json : jsonArray) {
-            JSONObject nextAcc = (JSONObject) json;
-            addAccount(list, nextAcc);
+            JSONObject nextScore = (JSONObject) json;
+            addLeaderboard(board, nextScore);
         }
     }
 
     // MODIFIES: list
-    // EFFECTS: parses userAccount from JSON object and adds it to accountList
-    private void addAccount(AccountList list, JSONObject jsonObject) {
-        String username = jsonObject.getString("username");
-        String password = jsonObject.getString("password");
-        list.addAccount(username, password);
+    // EFFECTS: parses Leaderboards from JSON object and adds it to accountList
+    private void addLeaderboard(Leaderboard board, JSONObject jsonObject) {
+        int score = jsonObject.getInt("score");
+        String user = jsonObject.getString("username");
+        board.addToLeaderboard(score, user);
     }
-
 }

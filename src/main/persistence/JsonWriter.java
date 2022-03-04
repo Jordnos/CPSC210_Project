@@ -24,7 +24,7 @@ public class JsonWriter {
 
     // MODIFIES: this
     // EFFECTS: writes JSON representation of a writable to file
-    void write(Writable w) {
+    public void write(Writable w) {
         JSONObject json = w.toJson();
         saveToFile(json.toString(TAB));
     }

@@ -1,15 +1,20 @@
 package model;
 
 
-import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 // this class has methods needed to create a leaderboard for any game
-public class Leaderboard {
+public class Leaderboard implements Writable {
     public static final String LEADERBOARD_GAME_MEMORIZE_SEQUENCE = "MEMORIZE SEQUENCE";
 
     private String gameTitle;
-    private HashMap<Integer,ArrayList<String>> scoresList;
+    private HashMap<String, Integer> scoresList;
 
     public Leaderboard(String gameTitle) {
         this.gameTitle = gameTitle;
@@ -17,27 +22,50 @@ public class Leaderboard {
     }
 
     // EFFECTS:  returns the scoreList
-    public HashMap<Integer,ArrayList<String>> getScoresList() {
-        return scoresList;
+    public Map<String, Integer> getScoresList() {
+        return Collections.unmodifiableMap(scoresList);
     }
 
     // MODIFIES: this
     // EFFECTS:  adds score to leaderboards with associated user if the score isn't already on
     public void addToLeaderboard(int score, String user) {
-        ArrayList<String> arr;
-        if (scoresList.containsKey(score)) {
-            arr = scoresList.get(score);
+        if (scoresList.containsKey(user)) {
+            if (scoresList.get(user) < score) {
+                scoresList.replace(user, score);
+            }
         } else {
-            arr = new ArrayList<>();
-        }
-        if (!arr.contains(user)) {
-            arr.add(user);
-            scoresList.put(score,arr);
+            scoresList.put(user, score);
         }
     }
 
     public String getGameTitle() {
         return gameTitle;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("title", gameTitle);
+        json.put("scores", leaderboardToJson());
+        return json;
+    }
+
+    // EFFECTS: returns scores in this leaderboard as a JSON array
+    private JSONArray leaderboardToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Map.Entry<String,Integer> entry : scoresList.entrySet()) {
+            jsonArray.put(scoreToJson(entry));
+        }
+
+        return jsonArray;
+    }
+
+    public JSONObject scoreToJson(Map.Entry<String,Integer> entry) {
+        JSONObject json = new JSONObject();
+        json.put("username", entry.getKey());
+        json.put("score", entry.getValue());
+        return json;
     }
 
 }

@@ -32,6 +32,20 @@ public class GameMemorizeSequenceTest {
     }
 
     @Test
+    void testAddOneToSequenceMultiple() {
+        int trials = 15;
+        for (int i = 0; i < trials; i++) {
+            game.addOneToSequence();
+        }
+
+        assertEquals(trials, game.getSequence().size());
+
+        for (char c: game.getSequence()) {
+            assertTrue(isArrowCharacter(c));
+        }
+    }
+
+    @Test
     void testWasdToArrow() {
         assertEquals(GameMemorizeSequence.UP_ARROW, game.wasdToArrow('w'));
         assertEquals(GameMemorizeSequence.LEFT_ARROW, game.wasdToArrow('a'));
