@@ -5,14 +5,9 @@ import java.util.Random;
 
 // class holds all the information and methods needed to run the game Memorize Sequence
 public class GameMemorizeSequence {
-    public static final int TIME_PER_CHAR_IN_SEQUENCE = 1000;
-    public static final int TIME_BETWEEN_SEQUENCE = 1000;
-    public static final char UP_ARROW = '^';
-    public static final char DOWN_ARROW = 'v';
-    public static final char LEFT_ARROW = 60;
-    public static final char RIGHT_ARROW = 62;
+    public static final int TIME_BETWEEN_SEQUENCE = 500;
 
-    private ArrayList<Character> sequence;
+    private ArrayList<Integer> sequence;
     private int score = 0;
     private boolean ended = false;
 
@@ -25,37 +20,8 @@ public class GameMemorizeSequence {
     // EFFECTS:  generates one of the 4 arrow characters and adds it to the sequence
     public void addOneToSequence() {
         Random rand = new Random();
-        int i = rand.nextInt(4);
-        char c;
-        switch (i) {
-            case 0:
-                c = UP_ARROW;
-                break;
-            case 1:
-                c = RIGHT_ARROW;
-                break;
-            case 2:
-                c = DOWN_ARROW;
-                break;
-            default:
-                c = LEFT_ARROW;
-        }
-        sequence.add(c);
-    }
-
-    // REQUIRES: c is either w, a, s or d
-    // EFFECTS:  returns the character correlated to the code integer
-    public char wasdToArrow(char c) {
-        switch (c) {
-            case 'w':
-                return UP_ARROW;
-            case 'd':
-                return RIGHT_ARROW;
-            case 's':
-                return DOWN_ARROW;
-            default:
-                return LEFT_ARROW;
-        }
+        int i = rand.nextInt(9);
+        sequence.add(i);
     }
 
     // MODIFIES: this
@@ -64,7 +30,7 @@ public class GameMemorizeSequence {
         score++;
     }
 
-    public ArrayList<Character> getSequence() {
+    public ArrayList<Integer> getSequence() {
         return sequence;
     }
 

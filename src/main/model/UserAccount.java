@@ -9,7 +9,7 @@ public class UserAccount implements Writable {
     private String password;
 
     // EFFECTS:  initializes the password
-    protected UserAccount(String username, String password) {
+    public UserAccount(String username, String password) {
         this.username = username;
         this.password = password;
     }
