@@ -198,7 +198,7 @@ public class GameFrame extends JFrame implements ActionListener {
                     checkPlayerTurn();
                 }
             }
-        } else if (e.getSource() == goButton && playerTurn) {
+        } else if (e.getSource() == goButton && !playerTurn) {
             try {
                 goButton.setBackground(BUTTON_COLOR);
                 startRound();

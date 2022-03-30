@@ -3,9 +3,7 @@ package ui;
 import model.Leaderboard;
 
 import javax.swing.*;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.TreeSet;
+import java.util.*;
 
 // this class represents a frame where the list of scores and users
 public class LeaderboardFrame extends JFrame {
@@ -22,10 +20,11 @@ public class LeaderboardFrame extends JFrame {
     // EFFECTS:  puts the leaderboard into a JList, then onto a JScrollPanel for the user to view
     public void setLeaderboard() {
         Map<String, Integer> data = leaderboard.getScoresList();
-        TreeSet<String> listData = new TreeSet<>(new CompareLeaderboard());
+        ArrayList<String> listData = new ArrayList<>();
         for (Map.Entry<String,Integer> entry : data.entrySet()) {
             listData.add(entry.getValue() + "     " + entry.getKey());
         }
+        listData.sort(new CompareLeaderboard());
 
         JList<Object> list = new JList<>(listData.toArray());
         list.setLayoutOrientation(JList.HORIZONTAL_WRAP);

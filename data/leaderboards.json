@@ -11,6 +11,10 @@
         {
             "score": 1,
             "username": "user3"
+        },
+        {
+            "score": 3,
+            "username": "user4"
         }
     ],
     "title": "gameTitle"

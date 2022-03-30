@@ -6,6 +6,8 @@ import model.Leaderboard;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 // referenced from AlarmSystem
 // This class represents the menu window frame where the user can go through the application
@@ -199,8 +201,8 @@ public class MenuUI extends JFrame {
                 frame.setVisible(true);
                 frame.setBounds(10, 10, 370, 360);
                 frame.setResizable(false);
+                frame.addWindowListener(new UpdateTitleAdapter());
             }
-            updateTitle();
         }
     }
 
@@ -239,8 +241,8 @@ public class MenuUI extends JFrame {
                 frame.setVisible(true);
                 frame.setBounds(10, 10, 370, 360);
                 frame.setResizable(false);
+                frame.addWindowListener(new UpdateTitleAdapter());
             }
-            updateTitle();
         }
     }
 
@@ -255,6 +257,14 @@ public class MenuUI extends JFrame {
             frame.setVisible(true);
             frame.setBounds(10, 10, 370, 360);
             frame.setResizable(false);
+        }
+    }
+
+    // class to update the title with user details on window close
+    private class UpdateTitleAdapter extends WindowAdapter {
+        @Override
+        public void windowClosed(WindowEvent e) {
+            updateTitle();
         }
     }
 }
