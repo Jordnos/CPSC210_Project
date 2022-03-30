@@ -1,7 +1,17 @@
 {
-    "scores": [{
-        "score": 3,
-        "username": "user2"
-    }],
-    "title": "MEMORIZE SEQUENCE"
+    "scores": [
+        {
+            "score": 5,
+            "username": "user1"
+        },
+        {
+            "score": 3,
+            "username": "user2"
+        },
+        {
+            "score": 1,
+            "username": "user3"
+        }
+    ],
+    "title": "gameTitle"
 }
