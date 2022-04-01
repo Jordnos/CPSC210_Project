@@ -32,8 +32,18 @@ public class AccountList implements Writable {
 
     // EFFECTS:  return true if username and password match an account on the accountlist
     public boolean loginAccount(String username, String password) {
-        return (list.containsKey(username)
-                && list.get(username).getPassword().equals(password));
+        return list.containsKey(username) && list.get(username).getPassword().equals(password);
+    }
+
+    // MODIFIES: this
+    // EFFECTS:  return true if username and password match an account, and it is successfully
+    //           removed from the accountlist, return false otherwise
+    public boolean deleteAccount(String username, String password) {
+        if (list.containsKey(username) && list.get(username).getPassword().equals(password)) {
+            list.remove(username);
+            return true;
+        }
+        return false;
     }
 
     // EFFECTS:  return true if username is taken, false otherwise

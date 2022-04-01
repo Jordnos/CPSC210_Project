@@ -1,6 +1,8 @@
 package ui;
 
 import model.AccountList;
+import model.Event;
+import model.EventLog;
 import model.Leaderboard;
 
 import javax.swing.*;
@@ -8,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Iterator;
 
 // referenced from AlarmSystem
 // This class represents the menu window frame where the user can go through the application
@@ -87,16 +90,22 @@ public class MenuUI extends JFrame {
         JButton loginButton = new JButton("Login");
         JButton logoutButton = new JButton("Logout");
         JButton signupButton = new JButton("Signup");
+        JButton changePassButton = new JButton("Change Password");
+        JButton deleteAccButton = new JButton("Delete Account");
         JButton accountListButton = new JButton("Active Accounts");
 
         loginButton.addActionListener(new LoginButtonListener());
         logoutButton.addActionListener(new LogoutButtonListener());
         signupButton.addActionListener(new SignupButtonListener());
+        changePassButton.addActionListener(new ChangePasswordButtonListener());
+        deleteAccButton.addActionListener(new DeleteAccountButtonListener());
         accountListButton.addActionListener(new AccountListButtonListener());
 
         panel.add(loginButton);
         panel.add(logoutButton);
         panel.add(signupButton);
+        panel.add(changePassButton);
+        panel.add(deleteAccButton);
         panel.add(accountListButton);
 
         return panel;
@@ -220,6 +229,49 @@ public class MenuUI extends JFrame {
                 loggedIn = false;
                 accLoggedIn = null;
                 JOptionPane.showMessageDialog(null,"Logout successful");
+            }
+            updateTitle();
+        }
+    }
+
+    // listener class for the button to logout of the application
+    private class ChangePasswordButtonListener implements ActionListener {
+
+        // MODIFIES: this
+        // EFFECTS:  if a user is logged in, lets them change the password in a new PasswordChangeFrame
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (!loggedIn) {
+                JOptionPane.showMessageDialog(null,"You are not logged in");
+            } else {
+                PasswordChangeFrame frame = new PasswordChangeFrame(accList);
+                frame.setTitle("Change Password Form");
+                frame.setVisible(true);
+                frame.setBounds(10, 10, 370, 360);
+                frame.setResizable(false);
+                frame.addWindowListener(new UpdateTitleAdapter());
+            }
+        }
+    }
+
+    // listener class for the button to logout of the application
+    private class DeleteAccountButtonListener implements ActionListener {
+
+        // MODIFIES: this
+        // EFFECTS:  if a user is logged in, deletes account
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (!loggedIn) {
+                JOptionPane.showMessageDialog(null,"You are not logged in");
+            } else {
+                Object[] options = { "YES", "NO" };
+                int option = JOptionPane.showOptionDialog(null, "Are you sure?", "Warning",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+                if (option == JOptionPane.YES_OPTION) {
+                    accList.deleteAccount(accLoggedIn, accList.getList().get(accLoggedIn).getPassword());
+                    loggedIn = false;
+                    accLoggedIn = null;
+                }
             }
             updateTitle();
         }

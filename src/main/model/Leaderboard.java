@@ -26,7 +26,8 @@ public class Leaderboard implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS:  adds score to leaderboards with associated user if the score isn't already on
+    // EFFECTS:  adds score to leaderboards with associated user if the score isn't already on,
+    //           only record the highest score per user, deletes old score if new score is higher
     public void addToLeaderboard(int score, String user) {
         if (scoresList.containsKey(user)) {
             if (scoresList.get(user) < score) {

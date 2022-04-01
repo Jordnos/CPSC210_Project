@@ -24,4 +24,9 @@ website is an inspiration for this project as I will attempt to replicate some o
 ## Phase 2 User Stories
 
 - As a user, I want to be able to save the account list and leaderboard to a file.
-- As a user, I want to be able to load an account list and leaderboard from a file.
+- As a user, I want to be able to load an account list and leaderboard from a file.  
+
+## Phase 3 User Stories
+
+- As a user, I want to be able to change passwords of my account.
+- As a user, I want to be able to delete my account from the account list and scores.  
