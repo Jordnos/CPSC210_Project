@@ -47,3 +47,13 @@ Fri Apr 01 03:01:43 PDT 2022
 Score Removed From Leaderboard - User: userTest2 Score: 1  
 Fri Apr 01 03:01:43 PDT 2022  
 New Score Added To Leaderboard - User: userTest2 Score: 3
+
+## Phase 4: Task 3
+
+- make classes for each pane in the main menu
+- an abstract class extended by the multiple frame classes
+- an abstract class extended by SignupFrame and LoginFrame, for user input boxes 
+- an abstract class extended by AccountListFrame and LeaderboardFrame, for making a list
+- take Singleton Design Pattern from EventLog and apply it to AccountList and Leaderboard
+
+
