@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 // referenced from "https://www.tutorialsfield.com/login-form-in-java-swing-with-source-code/"
-// this class represents a frame where the user can log in to their account
+// this class represents a frame where the user can change their account password
 public class PasswordChangeFrame extends JFrame implements ActionListener {
 
     Container container = getContentPane();
@@ -57,7 +57,7 @@ public class PasswordChangeFrame extends JFrame implements ActionListener {
     }
 
     // MODIFIES: this
-    // EFFECTS:  adds action listeners to the login button and show password checkbox
+    // EFFECTS:  adds action listeners to the confirm button and show password checkbox
     public void addActionEvent() {
         confirmButton.addActionListener(this);
         showPasswords.addActionListener(this);

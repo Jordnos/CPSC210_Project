@@ -231,7 +231,7 @@ public class MenuUI extends JFrame {
         }
     }
 
-    // listener class for the button to logout of the application
+    // listener class for the button to change password of user logged in
     private class ChangePasswordButtonListener implements ActionListener {
 
         // MODIFIES: this
@@ -251,7 +251,7 @@ public class MenuUI extends JFrame {
         }
     }
 
-    // listener class for the button to logout of the application
+    // listener class for the button to delete the logged in account
     private class DeleteAccountButtonListener implements ActionListener {
 
         // MODIFIES: this
