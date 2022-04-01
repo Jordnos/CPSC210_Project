@@ -30,3 +30,20 @@ website is an inspiration for this project as I will attempt to replicate some o
 
 - As a user, I want to be able to change passwords of my account.
 - As a user, I want to be able to delete my account from the account list and scores.  
+
+## Phase 4: Task 2
+
+Fri Apr 01 03:00:53 PDT 2022  
+New User Created - User: testUser Password: 12345  
+Fri Apr 01 03:00:58 PDT 2022  
+Password Changed - User: testUserNew password: 123  
+Fri Apr 01 03:01:10 PDT 2022  
+Account Deleted - User: testUser  
+Fri Apr 01 03:01:17 PDT 2022  
+New User Created - User: userTest2 Password: 123  
+Fri Apr 01 03:01:27 PDT 2022  
+New Score Added To Leaderboard - User: userTest2 Score: 1  
+Fri Apr 01 03:01:43 PDT 2022  
+Score Removed From Leaderboard - User: userTest2 Score: 1  
+Fri Apr 01 03:01:43 PDT 2022  
+New Score Added To Leaderboard - User: userTest2 Score: 3

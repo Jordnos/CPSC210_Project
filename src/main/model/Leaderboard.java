@@ -31,11 +31,15 @@ public class Leaderboard implements Writable {
     public void addToLeaderboard(int score, String user) {
         if (scoresList.containsKey(user)) {
             if (scoresList.get(user) < score) {
+                EventLog.getInstance().logEvent(new Event("Score Removed From Leaderboard - User: "
+                        + user + " Score: " + scoresList.get(user)));
                 scoresList.replace(user, score);
             }
         } else {
             scoresList.put(user, score);
         }
+        EventLog.getInstance().logEvent(new Event("New Score Added To Leaderboard - User: "
+                + user + " Score: " + score));
     }
 
     public String getGameTitle() {

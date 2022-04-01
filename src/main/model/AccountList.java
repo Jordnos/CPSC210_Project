@@ -27,12 +27,18 @@ public class AccountList implements Writable {
             return false;
         }
         list.put(username,acc);
+        EventLog.getInstance().logEvent(new Event("New User Created - User: "
+                + username + " Password: " + password));
         return true;
     }
 
     // EFFECTS:  return true if username and password match an account on the accountlist
     public boolean loginAccount(String username, String password) {
-        return list.containsKey(username) && list.get(username).getPassword().equals(password);
+        if (list.containsKey(username) && list.get(username).getPassword().equals(password)) {
+            EventLog.getInstance().logEvent(new Event("User logged in - User: " + username));
+            return true;
+        }
+        return false;
     }
 
     // MODIFIES: this
@@ -41,6 +47,7 @@ public class AccountList implements Writable {
     public boolean deleteAccount(String username, String password) {
         if (list.containsKey(username) && list.get(username).getPassword().equals(password)) {
             list.remove(username);
+            EventLog.getInstance().logEvent(new Event("Account Deleted - User: " + username));
             return true;
         }
         return false;
@@ -57,6 +64,8 @@ public class AccountList implements Writable {
     public boolean changePass(String username, String password) {
         if (list.containsKey(username)) {
             list.get(username).setPassword(password);
+            EventLog.getInstance().logEvent(new Event("Password Changed - User: "
+                    + username + " New password: " + password));
             return true;
         }
         return false;
@@ -84,5 +93,3 @@ public class AccountList implements Writable {
         return jsonArray;
     }
 }
-
-

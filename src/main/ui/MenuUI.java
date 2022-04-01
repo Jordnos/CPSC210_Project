@@ -1,6 +1,8 @@
 package ui;
 
 import model.AccountList;
+import model.Event;
+import model.EventLog;
 import model.Leaderboard;
 
 import javax.swing.*;
@@ -8,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Iterator;
 
 // referenced from AlarmSystem
 // This class represents the menu window frame where the user can go through the application
@@ -32,6 +35,8 @@ public class MenuUI extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
+
+        addWindowListener(new AppClose());
     }
 
     // MODIFIES: this
@@ -314,6 +319,18 @@ public class MenuUI extends JFrame {
         @Override
         public void windowClosed(WindowEvent e) {
             updateTitle();
+        }
+    }
+
+    // class to update the title with user details on window close
+    private class AppClose extends WindowAdapter {
+        @Override
+        public void windowClosing(WindowEvent e) {
+            EventLog el = EventLog.getInstance();
+
+            for (Event event : el) {
+                System.out.println(event.toString());
+            }
         }
     }
 }
