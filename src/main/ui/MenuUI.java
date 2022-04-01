@@ -1,8 +1,6 @@
 package ui;
 
 import model.AccountList;
-import model.Event;
-import model.EventLog;
 import model.Leaderboard;
 
 import javax.swing.*;
@@ -10,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Iterator;
 
 // referenced from AlarmSystem
 // This class represents the menu window frame where the user can go through the application
